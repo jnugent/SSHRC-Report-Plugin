@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * SSHRC Report plugin localization strings for the en_US (U.S. English) locale.
+  *
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<!-- SSHRC Report -->
+	<message key="plugins.generic.sshrcReport.displayName">SSHRC Report Plugin</message>
+	<message key="plugins.generic.sshrcReport.description"><![CDATA[Generates a SSHRC Report for journals.]]></message>
+
+	<!-- Settings Management -->
+	<message key="plugins.generic.sshrcReport.manager.settings">Settings</message>
+	<message key="plugins.generic.sshrcReport.manager.report">Get SSHRC Report</message>
+	<message key="plugins.generic.sshrcReport.manager.sshrcReportSettings">SSHRC Report Settings</message>
+	<message key="plugins.generic.sshrcReport.manager.settings.description"><![CDATA[<p>With this plugin enabled, journal managers may generate reports for SSHRC applications.</p>]]></message>
+
+	<!-- Settings form keys  -->
+	<message key="plugins.generic.sshrcReport.form.impact">Measures of Impact</message>
+	<message key="plugins.generic.sshrcReport.form.researchRecord">Editor-in-chief's Research Record</message>
+	<message key="plugins.generic.sshrcReport.form.editorialBoardFunc">Please describe the functioning of your editorial board</message>
+	
+	<!-- SSHRC Report output keys -->
+	<message key="plugins.generic.sshrcReport.report.sshrcReport">SSHRC Report</message>
+	<message key="plugins.generic.sshrcReport.report.authorGuidelines">Author Guidelines</message>
+	<message key="plugins.generic.sshrcReport.report.reviewGuidelines">Review Guidelines</message>
+	<message key="plugins.generic.sshrcReport.report.focusScopeDesc">Focus and Scope of the Journal</message>
+	<message key="plugins.generic.sshrcReport.report.reviewPolicy">Review Policy</message>
+	<message key="plugins.generic.sshrcReport.report.pubFreqPolicy">Publication Frequency</message>
+	<message key="plugins.generic.sshrcReport.report.impact">Measures of Impact</message>
+	<message key="plugins.generic.sshrcReport.report.researchRecord">Editor Research Record</message>
+	<message key="plugins.generic.sshrcReport.report.editorialBoardFunc">Functioning of the Editorial Board</message>
+	<message key="plugins.generic.sshrcReport.report.subscriberCount">Subscriber Count</message>
+	<message key="plugins.generic.sshrcReport.report.subscriberCountString">There are currently {$numberOfReaders} readers currently subscribed.</message>
+	<message key="plugins.generic.sshrcReport.report.subscriptionBreakdown">A breakdown of this journal's subscriptions is shown below.</message>
+</locale>
