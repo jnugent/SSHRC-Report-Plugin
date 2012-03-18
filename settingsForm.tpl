@@ -22,15 +22,15 @@
 <table class="data" width="100%">
 	<tr valign="top">
 		<td class="label">{fieldLabel name="impact" key="plugins.generic.sshrcReport.form.impact"}</td>
-		<td class="value"><textarea name="impact[{$formLocale|escape}]" id="impact" rows="5" cols="40" class="textArea">{$impact[$formLocale]|escape}</textarea></td>
+		<td class="value"><textarea name="impact[{$formLocale|escape}]" id="impact" rows="5" cols="40" class="textArea richContent">{$impact[$formLocale]|escape}</textarea></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="researchRecord" key="plugins.generic.sshrcReport.form.researchRecord"}</td>
-		<td class="value"><textarea name="researchRecord[{$formLocale|escape}]" id="researchRecord" rows="5" cols="40" class="textArea">{$researchRecord[$formLocale]|escape}</textarea></td>
+		<td class="value"><textarea name="researchRecord[{$formLocale|escape}]" id="researchRecord" rows="5" cols="40" class="textArea richContent">{$researchRecord[$formLocale]|escape}</textarea></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="editorialBoardFunc" key="plugins.generic.sshrcReport.form.editorialBoardFunc"}</td>
-		<td class="value"><textarea name="editorialBoardFunc[{$formLocale|escape}]" id="editorialBoardFunc" rows="5" cols="40" class="textArea">{$editorialBoardFunc[$formLocale]|escape}</textarea></td>
+		<td class="value"><textarea name="editorialBoardFunc[{$formLocale|escape}]" id="editorialBoardFunc" rows="5" cols="40" class="textArea richContent">{$editorialBoardFunc[$formLocale]|escape}</textarea></td>
 	</tr>
 </table>
 

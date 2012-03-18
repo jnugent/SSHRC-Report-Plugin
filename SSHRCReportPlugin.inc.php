@@ -26,6 +26,7 @@ class SSHRCReportPlugin extends GenericPlugin {
 			$this->addLocaleData();
 			HookRegistry::register ('Templates::Admin::Index::AdminFunctions', array(&$this, 'displayMenuOption'));
 			HookRegistry::register ('Templates::Manager::Index::ManagementPages', array(&$this, 'displayMenuOption'));
+			HookRegistry::register('TinyMCEPlugin::getEnableFields', array(&$this, 'getTinyMCEEnabledFields'));
 			return true;
 		} else {
 			return false;
@@ -185,6 +186,21 @@ class SSHRCReportPlugin extends GenericPlugin {
 			$output .= '<li>&#187; <a href="' . Request::url(null, 'manager', 'plugin', array('generic', $this->getName(), 'report')) . '">' .
 				__('plugins.generic.sshrcReport.manager.report') . '</a></li>';
 		}
+		return false;
+	}
+
+	/**
+	 * Hook into TinyMCE for the text areas on the settings form.
+	 * @param String $hookName
+	 * @param array $args
+	 * @return boolean
+	 */
+	function getTinyMCEEnabledFields($hookName, $args) {
+
+		$tinyMCEPlugin =& $args[0];
+		$fields =& $args[1];
+
+		$fields = array('impact', 'researchRecord', 'editorialBoardFunc');
 		return false;
 	}
 }
