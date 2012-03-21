@@ -107,8 +107,8 @@ class SSHRCReportPlugin extends GenericPlugin {
 	 * @param $messageParams array extra information for the management verb.
  	 * @return boolean
  	 */
-	function manage($verb, $args, &$message) {
-		if (!parent::manage($verb, $args, $message)) return false;
+	function manage($verb, $args, &$message, &$messageParams) {
+		if (!parent::manage($verb, $args, $message, $messageParams)) return false;
 
 		$journal =& Request::getJournal();
 		$templateMgr =& TemplateManager::getManager();
@@ -166,7 +166,81 @@ class SSHRCReportPlugin extends GenericPlugin {
 				$templateMgr->assign('numberOfReaders', $registeredUsers['reader']);
 				$templateMgr->assign('subscriptionStats', $subscriptionStats);
 
-				$templateMgr->display($this->getTemplatePath() . 'report.tpl');
+				// grab the current issue, and the articles published in it.
+				$issueDao =& DAORegistry::getDAO('IssueDAO');
+				$issue =& $issueDao->getCurrentIssue($journal->getId(), true);
+
+				$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
+				$publishedArticles =& $publishedArticleDao->getPublishedArticles($issue->getId());
+
+				$articleFileDao =& DAORegistry::getDAO('ArticleFileDAO');
+
+				$issueFiles = array();
+				import('classes.file.PublicFileManager');
+				$publicFileManager =& new PublicFileManager();
+				$filesDir = $publicFileManager->getJournalFilesPath($journal->getId());
+
+				// grab the paths to the files associated with the galleys in each article.
+				foreach ($publishedArticles as $article) {
+					$galleys =& $article->getLocalizedGalleys();
+					foreach ($galleys as $galley) {
+						$articleFile =& $articleFileDao->getArticleFile($galley->getFileId());
+						$issueFiles[] =& str_replace($filesDir, '', $articleFile->getFilePath());
+					}
+				}
+
+				$report = $templateMgr->fetch($this->getTemplatePath() . 'report.tpl');
+
+				// save the report out to disk so we can include it in the archive.
+				import('lib.pkp.classes.file.FileManager');
+				import('classes.file.TemporaryFileManager');
+
+				$temporaryFileManager =& new TemporaryFileManager();
+				$fileManager =& new FileManager();
+
+				$sshrcReportTempFile = tempnam($temporaryFileManager->getBasePath(), 'SHR');
+				if (is_writeable($sshrcReportTempFile)) {
+					$fp = fopen($sshrcReportTempFile, 'wb');
+					fwrite($fp, $report);
+					fclose($fp);
+				} else {
+					fatalError('misconfigured directory permissions on: ' . $temporaryFileManager->getBasePath());
+				}
+
+				// add the report file to our issue files list.
+				$realReportFile = $temporaryFileManager->getBasePath() . 'SSHRCReport-' . date('Ymd') . '.html';
+				$fileManager->copyFile($sshrcReportTempFile, $realReportFile);
+
+				// Create a temporary file.
+				$archivePath = tempnam($temporaryFileManager->getBasePath(), 'sf-');
+
+				// assemble our archive.  First, put the galley files inside.
+				exec(Config::getVar('cli', 'tar') . ' -c ' .
+					'-f ' . escapeshellarg($archivePath) . ' ' .
+					'-C ' . escapeshellarg($filesDir) . ' ' .
+					implode(' ', array_map('escapeshellarg', $issueFiles))
+				);
+
+				// now, add the report.  Different command, since it is in a different directory
+				// this command also ultimately compresses the final archive.
+				exec(Config::getVar('cli', 'tar') . ' -r ' .
+						'-f ' . escapeshellarg($archivePath) . ' ' .
+						'-C ' . escapeshellarg($temporaryFileManager->getBasePath()) . ' ' .
+						escapeshellarg(str_replace($temporaryFileManager->getBasePath(), '', $realReportFile))
+				);
+
+				if (file_exists($archivePath)) {
+					$fileManager->downloadFile($archivePath, 'application/x-tar', false, 'sshrcReport.tar');
+					$fileManager->deleteFile($archivePath);
+				} else {
+					fatalError('Creating archive failed!');
+				}
+
+				// clean up
+				$fileManager->deleteFile($sshrcReportTempFile);
+				$fileManager->deleteFile($archivePath);
+				$fileManager->deleteFile($realReportFile);
+
 				return true;
 			default:
 				// Unknown management verb
