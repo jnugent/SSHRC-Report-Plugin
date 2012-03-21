@@ -177,7 +177,7 @@ class SSHRCReportPlugin extends GenericPlugin {
 
 				$issueFiles = array();
 				import('classes.file.PublicFileManager');
-				$publicFileManager =& new PublicFileManager();
+				$publicFileManager = new PublicFileManager();
 				$filesDir = $publicFileManager->getJournalFilesPath($journal->getId());
 
 				// grab the paths to the files associated with the galleys in each article.
@@ -195,8 +195,8 @@ class SSHRCReportPlugin extends GenericPlugin {
 				import('lib.pkp.classes.file.FileManager');
 				import('classes.file.TemporaryFileManager');
 
-				$temporaryFileManager =& new TemporaryFileManager();
-				$fileManager =& new FileManager();
+				$temporaryFileManager = new TemporaryFileManager();
+				$fileManager = new FileManager();
 
 				$sshrcReportTempFile = tempnam($temporaryFileManager->getBasePath(), 'SHR');
 				if (is_writeable($sshrcReportTempFile)) {
