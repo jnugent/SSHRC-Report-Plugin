@@ -104,11 +104,10 @@ class SSHRCReportPlugin extends GenericPlugin {
  	 * @param $verb string
  	 * @param $args array
 	 * @param $message string Location for the plugin to put a result msg
-	 * @param $messageParams array extra information for the management verb.
  	 * @return boolean
  	 */
-	function manage($verb, $args, &$message, &$messageParams) {
-		if (!parent::manage($verb, $args, $message, $messageParams)) return false;
+	function manage($verb, $args, &$message) {
+		if (!parent::manage($verb, $args, $message)) return false;
 
 		$journal =& Request::getJournal();
 		$templateMgr =& TemplateManager::getManager();
@@ -163,7 +162,7 @@ class SSHRCReportPlugin extends GenericPlugin {
 				$subscriptionStats = $journalStatisticsDao->getSubscriptionStatistics($journal->getId());
 				$registeredUsers = $journalStatisticsDao->getUserStatistics($journal->getId());
 
-				$templateMgr->assign('numberOfReaders', $registeredUsers['reader']);
+				$templateMgr->assign('numberOfReaders', isset($registeredUsers['reader']) ? $registeredUsers['reader'] : 0);
 				$templateMgr->assign('subscriptionStats', $subscriptionStats);
 
 				// grab the first two issues, and the articles published in it.
@@ -205,39 +204,42 @@ class SSHRCReportPlugin extends GenericPlugin {
 				$temporaryFileManager =& new TemporaryFileManager();
 				$fileManager =& new FileManager();
 
-				$sshrcReportTempFile = tempnam($temporaryFileManager->getBasePath(), 'SHR');
+				$sshrcReportTempFile = tempnam(dirname($temporaryFileManager->filesDir), 'SHR');
+
 				if (is_writeable($sshrcReportTempFile)) {
 					$fp = fopen($sshrcReportTempFile, 'wb');
 					fwrite($fp, $report);
 					fclose($fp);
 				} else {
-					fatalError('misconfigured directory permissions on: ' . $temporaryFileManager->getBasePath());
+					fatalError('misconfigured directory permissions on files directory.');
 				}
 
 				// add the report file to our issue files list.
-				$realReportFile = $temporaryFileManager->getBasePath() . 'SSHRCReport-' . date('Ymd') . '.html';
+				$realReportFile = dirname($sshrcReportTempFile) . '/SSHRCReport-' . date('Ymd') . '.html';
+				error_log($realReportFile);
 				$fileManager->copyFile($sshrcReportTempFile, $realReportFile);
 
-				// Create a temporary file.
-				$archivePath = tempnam($temporaryFileManager->getBasePath(), 'sf-');
+				// Create a temporary file for the archive.
+				$archiveTmpPath = tempnam(dirname($temporaryFileManager->filesDir), 'sf-');
 
 				// assemble our archive.  First, put the galley files inside.
 				exec(Config::getVar('cli', 'tar') . ' -c ' .
-					'-f ' . escapeshellarg($archivePath) . ' ' .
+					'-f ' . escapeshellarg($archiveTmpPath) . ' ' .
 					'-C ' . escapeshellarg($filesDir) . ' ' .
-					implode(' ', array_map('escapeshellarg', $issueFiles))
-				);
+					implode(' ', array_map('escapeshellarg', $issueFiles)));
 
 				// now, add the report.  Different command, since it is in a different directory
 				exec(Config::getVar('cli', 'tar') . ' -r ' .
-						'-f ' . escapeshellarg($archivePath) . ' ' .
-						'-C ' . escapeshellarg($temporaryFileManager->getBasePath()) . ' ' .
-						escapeshellarg(str_replace($temporaryFileManager->getBasePath(), '', $realReportFile))
-				);
+						'-f ' . escapeshellarg($archiveTmpPath) . ' ' .
+						'-C ' . escapeshellarg(dirname($realReportFile)) . ' ' .
+						escapeshellarg(str_replace(dirname($realReportFile) . '/', '', $realReportFile)));
+
+				// rename our archive file.
+				$archivePath = dirname($archiveTmpPath) . '/sshrcReport.tar';
+				$fileManager->copyFile($archiveTmpPath, $archivePath);
 
 				if (file_exists($archivePath)) {
-					$fileManager->downloadFile($archivePath, 'application/x-tar', false, 'sshrcReport.tar');
-					$fileManager->deleteFile($archivePath);
+					$fileManager->downloadFile($archivePath, 'application/x-tar', false);
 				} else {
 					fatalError('Creating archive failed!');
 				}
@@ -245,6 +247,7 @@ class SSHRCReportPlugin extends GenericPlugin {
 				// clean up
 				$fileManager->deleteFile($sshrcReportTempFile);
 				$fileManager->deleteFile($archivePath);
+				$fileManager->deleteFile($archiveTmpPath);
 				$fileManager->deleteFile($realReportFile);
 
 				return true;
