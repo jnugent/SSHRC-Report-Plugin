@@ -166,18 +166,24 @@ class SSHRCReportPlugin extends GenericPlugin {
 				$templateMgr->assign('numberOfReaders', $registeredUsers['reader']);
 				$templateMgr->assign('subscriptionStats', $subscriptionStats);
 
-				// grab the current issue, and the articles published in it.
+				// grab the first two issues, and the articles published in it.
 				$issueDao =& DAORegistry::getDAO('IssueDAO');
-				$issue =& $issueDao->getCurrentIssue($journal->getId(), true);
-
 				$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
-				$publishedArticles =& $publishedArticleDao->getPublishedArticles($issue->getId());
+
+				$issues =& $issueDao->getPublishedIssues($journal->getId());
+				$firstTwoIssues = array_slice($issues->toArray(), 0, 2);
+
+				$publishedArticles = array();
+
+				foreach ($firstTwoIssues as $issue) {
+					$publishedArticles =& array_merge($publishedArticles, $publishedArticleDao->getPublishedArticles($issue->getId()));
+				}
 
 				$articleFileDao =& DAORegistry::getDAO('ArticleFileDAO');
 
 				$issueFiles = array();
 				import('classes.file.PublicFileManager');
-				$publicFileManager = new PublicFileManager();
+				$publicFileManager =& new PublicFileManager();
 				$filesDir = $publicFileManager->getJournalFilesPath($journal->getId());
 
 				// grab the paths to the files associated with the galleys in each article.
@@ -189,14 +195,15 @@ class SSHRCReportPlugin extends GenericPlugin {
 					}
 				}
 
+				// fetch the report template.
 				$report = $templateMgr->fetch($this->getTemplatePath() . 'report.tpl');
 
 				// save the report out to disk so we can include it in the archive.
 				import('lib.pkp.classes.file.FileManager');
 				import('classes.file.TemporaryFileManager');
 
-				$temporaryFileManager = new TemporaryFileManager();
-				$fileManager = new FileManager();
+				$temporaryFileManager =& new TemporaryFileManager();
+				$fileManager =& new FileManager();
 
 				$sshrcReportTempFile = tempnam($temporaryFileManager->getBasePath(), 'SHR');
 				if (is_writeable($sshrcReportTempFile)) {
@@ -222,7 +229,6 @@ class SSHRCReportPlugin extends GenericPlugin {
 				);
 
 				// now, add the report.  Different command, since it is in a different directory
-				// this command also ultimately compresses the final archive.
 				exec(Config::getVar('cli', 'tar') . ' -r ' .
 						'-f ' . escapeshellarg($archivePath) . ' ' .
 						'-C ' . escapeshellarg($temporaryFileManager->getBasePath()) . ' ' .
