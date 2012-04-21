@@ -12,9 +12,9 @@
  * @brief Generates a SSHRC Report for a journal
  */
 
-import('lib.pkp.classes.plugins.GenericPlugin');
+import('classes.plugins.ReportPlugin');
 
-class SSHRCReportPlugin extends GenericPlugin {
+class SSHRCReportPlugin extends ReportPlugin {
 	/**
 	 * Called as a plugin is registered to the registry
 	 * @param $category String Name of category plugin was registered to
@@ -24,8 +24,6 @@ class SSHRCReportPlugin extends GenericPlugin {
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
 			$this->addLocaleData();
-			HookRegistry::register ('Templates::Admin::Index::AdminFunctions', array(&$this, 'displayMenuOption'));
-			HookRegistry::register ('Templates::Manager::Index::ManagementPages', array(&$this, 'displayMenuOption'));
 			HookRegistry::register('TinyMCEPlugin::getEnableFields', array(&$this, 'getTinyMCEEnabledFields'));
 			return true;
 		} else {
@@ -34,11 +32,11 @@ class SSHRCReportPlugin extends GenericPlugin {
 	}
 
 	function getDisplayName() {
-		return __('plugins.generic.sshrcReport.displayName');
+		return __('plugins.reports.sshrcReport.displayName');
 	}
 
 	function getDescription() {
-		return __('plugins.generic.sshrcReport.description');
+		return __('plugins.reports.sshrcReport.description');
 	}
 
 	function getName() {
@@ -75,11 +73,10 @@ class SSHRCReportPlugin extends GenericPlugin {
 	 */
 	function getManagementVerbs() {
 		$verbs = array();
-		if ($this->getEnabled()) {
-			$verbs[] = array('settings', __('plugins.generic.sshrcReport.manager.settings'));
-			$verbs[] = array('report', __('plugins.generic.sshrcReport.manager.report'));
-		}
-		return parent::getManagementVerbs($verbs);
+		$verbs[] = array('settings', __('plugins.reports.sshrcReport.manager.settings'));
+		$verbs[] = array('reports', __('manager.statistics.reports'));
+
+		return $verbs;
 	}
 
 	/**
@@ -107,7 +104,6 @@ class SSHRCReportPlugin extends GenericPlugin {
  	 * @return boolean
  	 */
 	function manage($verb, $args, &$message) {
-		if (!parent::manage($verb, $args, $message)) return false;
 
 		$journal =& Request::getJournal();
 		$templateMgr =& TemplateManager::getManager();
@@ -115,7 +111,6 @@ class SSHRCReportPlugin extends GenericPlugin {
 		switch ($verb) {
 
 			case 'settings':
-				$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
 
 				$this->import('SSHRCReportSettingsForm');
 				$form = new SSHRCReportSettingsForm($this, $journal->getId());
@@ -135,7 +130,8 @@ class SSHRCReportPlugin extends GenericPlugin {
 					$form->display();
 				}
 				return true;
-			case 'report':
+
+			case 'reports':
 
 				// get the journal settings that are available for this report.
 				// mission or mandate
@@ -256,20 +252,6 @@ class SSHRCReportPlugin extends GenericPlugin {
 				assert(false);
 				return false;
 		}
-	}
-
-	function displayMenuOption($hookName, $args) {
-
-		$params =& $args[0];
-		$smarty =& $args[1];
-		$output =& $args[2];
-
-		$journal =& Request::getJournal();
-		if (isset($journal)) {
-			$output .= '<li>&#187; <a href="' . Request::url(null, 'manager', 'plugin', array('generic', $this->getName(), 'report')) . '">' .
-				__('plugins.generic.sshrcReport.manager.report') . '</a></li>';
-		}
-		return false;
 	}
 
 	/**

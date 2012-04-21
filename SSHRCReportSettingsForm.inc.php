@@ -64,7 +64,6 @@ class SSHRCReportSettingsForm extends Form {
 	 * Save settings.
 	 */
 	function execute() {
-		$plugin =& $this->plugin;
 		$journal =& Request::getJournal();
 
 		$journal->updateSetting('impact', $this->getData('impact'), 'string', true);

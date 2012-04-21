@@ -7,44 +7,44 @@
  * SSHRC Report output
  *
  *}
-<h2>{translate key="plugins.generic.sshrcReport.report.sshrcReport"}</h2>
+<h2>{translate key="plugins.reports.sshrcReport.reports.sshrcReport"}</h2>
 
-<h3>{translate key="plugins.generic.sshrcReport.report.focusScopeDesc"}</h3>
+<h3>{translate key="plugins.reports.sshrcReport.reports.focusScopeDesc"}</h3>
 
 {$focusScopeDesc[$currentLocale]}
 
-<h3>{translate key="plugins.generic.sshrcReport.report.authorGuidelines"}</h3>
+<h3>{translate key="plugins.reports.sshrcReport.reports.authorGuidelines"}</h3>
 
 {$authorGuidelines[$currentLocale]}
 
-<h3>{translate key="plugins.generic.sshrcReport.report.reviewPolicy"}</h3>
+<h3>{translate key="plugins.reports.sshrcReport.reports.reviewPolicy"}</h3>
 
 {$reviewPolicy[$currentLocale]}
 
-<h3>{translate key="plugins.generic.sshrcReport.report.reviewGuidelines"}</h3>
+<h3>{translate key="plugins.reports.sshrcReport.reports.reviewGuidelines"}</h3>
 
 {$reviewGuidelines[$currentLocale]}
 
-<h3>{translate key="plugins.generic.sshrcReport.report.pubFreqPolicy"}</h3>
+<h3>{translate key="plugins.reports.sshrcReport.reports.pubFreqPolicy"}</h3>
 
 {$pubFreqPolicy[$currentLocale]}
 
-<h3>{translate key="plugins.generic.sshrcReport.report.impact"}</h3>
+<h3>{translate key="plugins.reports.sshrcReport.reports.impact"}</h3>
 
 {$impact[$currentLocale]}
 
-<h3>{translate key="plugins.generic.sshrcReport.report.researchRecord"}</h3>
+<h3>{translate key="plugins.reports.sshrcReport.reports.researchRecord"}</h3>
 
 {$researchRecord[$currentLocale]}
 
-<h3>{translate key="plugins.generic.sshrcReport.report.editorialBoardFunc"}</h3>
+<h3>{translate key="plugins.reports.sshrcReport.reports.editorialBoardFunc"}</h3>
 
 {$editorialBoardFunc[$currentLocale]}
 
-<h3>{translate key="plugins.generic.sshrcReport.report.subscribers}</h3>
+<h3>{translate key="plugins.reports.sshrcReport.reports.subscribers}</h3>
 
-{translate key="plugins.generic.sshrcReport.report.subscriberCountString" numberOfReaders=$numberOfReaders}
-<p>{translate key="plugins.generic.sshrcReport.report.subscriptionBreakdown"}</p>
+{translate key="plugins.reports.sshrcReport.reports.subscriberCountString" numberOfReaders=$numberOfReaders}
+<p>{translate key="plugins.reports.sshrcReport.reports.subscriptionBreakdown"}</p>
 <ul>
 	{foreach from=$subscriptionStats item=stat}
 		<li>{$stat.name} => {$stat.count}</li>

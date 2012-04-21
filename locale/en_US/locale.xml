@@ -13,34 +13,34 @@
  
 <locale name="en_US" full_name="U.S. English">
 	<!-- SSHRC Report -->
-	<message key="plugins.generic.sshrcReport.displayName">SSHRC Report Plugin</message>
-	<message key="plugins.generic.sshrcReport.description"><![CDATA[Generates a SSHRC Report for journals.]]></message>
+	<message key="plugins.reports.sshrcReport.displayName">SSHRC Report Plugin</message>
+	<message key="plugins.reports.sshrcReport.description"><![CDATA[Generates a SSHRC Report for journals.]]></message>
 
 	<!-- Settings Management -->
-	<message key="plugins.generic.sshrcReport.manager.settings">Settings</message>
-	<message key="plugins.generic.sshrcReport.manager.report">Get SSHRC Report</message>
-	<message key="plugins.generic.sshrcReport.manager.sshrcReportSettings">SSHRC Report Settings</message>
-	<message key="plugins.generic.sshrcReport.manager.settings.description"><![CDATA[<p>With this plugin enabled, journal managers may generate reports for the Social Science and Humanities (SSHRC) <a href="http://www.sshrc-crsh.gc.ca/funding-financement/programs-programmes/scholarly_journals-revues_savantes-eng.aspx">Aid to Scholarly Journals</a> program. This report does not generate a complete, ready-to-go application for SSHRC, but will automatically retrieve and bundle information already included in OJS, along with the information provided below, into one single report that can subsequently be used to assist in writing the SSHRC application. For more information on eligibility and other guidelines, see the SSHRC website.</p>]]></message>
+	<message key="plugins.reports.sshrcReport.manager.settings">Settings</message>
+	<message key="plugins.reports.sshrcReport.manager.report">Get SSHRC Report</message>
+	<message key="plugins.reports.sshrcReport.manager.sshrcReportSettings">SSHRC Report Settings</message>
+	<message key="plugins.reports.sshrcReport.manager.settings.description"><![CDATA[<p>With this plugin enabled, journal managers may generate reports for the Social Science and Humanities (SSHRC) <a href="http://www.sshrc-crsh.gc.ca/funding-financement/programs-programmes/scholarly_journals-revues_savantes-eng.aspx">Aid to Scholarly Journals</a> program. This report does not generate a complete, ready-to-go application for SSHRC, but will automatically retrieve and bundle information already included in OJS, along with the information provided below, into one single report that can subsequently be used to assist in writing the SSHRC application. For more information on eligibility and other guidelines, see the SSHRC website.</p>]]></message>
 	
-	<message key="plugins.generic.sshrcReport.manager.settings.instructions"><![CDATA[<p>While many usage elements that SSHRC requests are available directly from the OJS system itself, SSHRC also requests the following non-usage-based information. Please fill these out to the best of your ability. You may have to revisit these items from year to year.</p>]]></message>
+	<message key="plugins.reports.sshrcReport.manager.settings.instructions"><![CDATA[<p>While many usage elements that SSHRC requests are available directly from the OJS system itself, SSHRC also requests the following non-usage-based information. Please fill these out to the best of your ability. You may have to revisit these items from year to year.</p>]]></message>
 
 	<!-- Settings form keys  -->
-	<message key="plugins.generic.sshrcReport.form.impact"><![CDATA[<strong>Measures of Impact:</strong><br /> Include any viable measures of impact, including citation index information or available impact factors, that may be pertinent; or provide a self-evaluation the journal's impact]]></message>
-	<message key="plugins.generic.sshrcReport.form.researchRecord"><![CDATA[<strong>Editor-in-chief's Research Record:</strong><br /> Provide a comprehensive description of the editor-in-chief's record of research and scholarly achievement]]></message>
-	<message key="plugins.generic.sshrcReport.form.editorialBoardFunc"><![CDATA[<strong>Editorial Board Description:</strong><br />Please describe the functioning of your editorial board]]></message>
+	<message key="plugins.reports.sshrcReport.form.impact"><![CDATA[<strong>Measures of Impact:</strong><br /> Include any viable measures of impact, including citation index information or available impact factors, that may be pertinent; or provide a self-evaluation the journal's impact]]></message>
+	<message key="plugins.reports.sshrcReport.form.researchRecord"><![CDATA[<strong>Editor-in-chief's Research Record:</strong><br /> Provide a comprehensive description of the editor-in-chief's record of research and scholarly achievement]]></message>
+	<message key="plugins.reports.sshrcReport.form.editorialBoardFunc"><![CDATA[<strong>Editorial Board Description:</strong><br />Please describe the functioning of your editorial board]]></message>
 	
 	<!-- SSHRC Report output keys -->
-	<message key="plugins.generic.sshrcReport.report.sshrcReport">SSHRC Report</message>
-	<message key="plugins.generic.sshrcReport.report.authorGuidelines">Author Guidelines</message>
-	<message key="plugins.generic.sshrcReport.report.reviewGuidelines">Review Guidelines</message>
-	<message key="plugins.generic.sshrcReport.report.focusScopeDesc">Focus and Scope of the Journal</message>
-	<message key="plugins.generic.sshrcReport.report.reviewPolicy">Review Policy</message>
-	<message key="plugins.generic.sshrcReport.report.pubFreqPolicy">Publication Frequency</message>
-	<message key="plugins.generic.sshrcReport.report.impact">Measures of Impact</message>
-	<message key="plugins.generic.sshrcReport.report.researchRecord">Editor Research Record</message>
-	<message key="plugins.generic.sshrcReport.report.editorialBoardFunc">Functioning of the Editorial Board</message>
-	<message key="plugins.generic.sshrcReport.report.subscribers">Subscribers</message>
-	<message key="plugins.generic.sshrcReport.report.subscriberCount">Subscriber Count</message>
-	<message key="plugins.generic.sshrcReport.report.subscriberCountString">{$numberOfReaders} users are currently registered to your journal as readers. ("Readers"  are not necessarily subsribers.)</message>
-	<message key="plugins.generic.sshrcReport.report.subscriptionBreakdown">A breakdown of this journal's subscriptions is shown below.</message>
+	<message key="plugins.reports.sshrcReport.reports.sshrcReport">SSHRC Report</message>
+	<message key="plugins.reports.sshrcReport.reports.authorGuidelines">Author Guidelines</message>
+	<message key="plugins.reports.sshrcReport.reports.reviewGuidelines">Review Guidelines</message>
+	<message key="plugins.reports.sshrcReport.reports.focusScopeDesc">Focus and Scope of the Journal</message>
+	<message key="plugins.reports.sshrcReport.reports.reviewPolicy">Review Policy</message>
+	<message key="plugins.reports.sshrcReport.reports.pubFreqPolicy">Publication Frequency</message>
+	<message key="plugins.reports.sshrcReport.reports.impact">Measures of Impact</message>
+	<message key="plugins.reports.sshrcReport.reports.researchRecord">Editor Research Record</message>
+	<message key="plugins.reports.sshrcReport.reports.editorialBoardFunc">Functioning of the Editorial Board</message>
+	<message key="plugins.reports.sshrcReport.reports.subscribers">Subscribers</message>
+	<message key="plugins.reports.sshrcReport.reports.subscriberCount">Subscriber Count</message>
+	<message key="plugins.reports.sshrcReport.reports.subscriberCountString">{$numberOfReaders} users are currently registered to your journal as readers. ("Readers"  are not necessarily subscribers.)</message>
+	<message key="plugins.reports.sshrcReport.reports.subscriptionBreakdown">A breakdown of this journal's subscriptions is shown below.</message>
 </locale>

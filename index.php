@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @defgroup plugins_generic_sshrcReport
+ * @defgroup plugins_reports_sshrcReport
  */
 
 /**
- * @file plugins/generic/sshrcReport/index.php
+ * @file plugins/reports/sshrcReport/index.php
  *
  * Copyright (c) 2003-2012 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @ingroup plugins_generic_sshrcReport
+ * @ingroup plugins_reports_sshrcReport
  * @brief Wrapper for SSHRC Report plugin.
  *
  */

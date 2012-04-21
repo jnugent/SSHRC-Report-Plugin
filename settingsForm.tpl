@@ -8,30 +8,30 @@
  *
  *}
 {strip}
-{assign var="pageTitle" value="plugins.generic.sshrcReport.manager.sshrcReportSettings"}
+{assign var="pageTitle" value="plugins.reports.sshrcReport.manager.sshrcReportSettings"}
 {include file="common/header.tpl"}
 {/strip}
 <div id="sshrcReportSettings">
-<div id="description">{translate key="plugins.generic.sshrcReport.manager.settings.description"}</div>
+<div id="description">{translate key="plugins.reports.sshrcReport.manager.settings.description"}</div>
 
 <div class="separator"></div>
 
-{translate key="plugins.generic.sshrcReport.manager.settings.instructions"}
+{translate key="plugins.reports.sshrcReport.manager.settings.instructions"}
 
-<form method="post" action="{plugin_url path="settings"}">
+<form method="post">
 {include file="common/formErrors.tpl"}
 
 <table class="data" width="100%">
 	<tr valign="top">
-		<td class="label">{fieldLabel name="impact" key="plugins.generic.sshrcReport.form.impact"}</td>
+		<td class="label">{fieldLabel name="impact" key="plugins.reports.sshrcReport.form.impact"}</td>
 		<td class="value"><textarea name="impact[{$formLocale|escape}]" id="impact" rows="5" cols="40" class="textArea richContent">{$impact[$formLocale]|escape}</textarea></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="researchRecord" key="plugins.generic.sshrcReport.form.researchRecord"}</td>
+		<td class="label">{fieldLabel name="researchRecord" key="plugins.reports.sshrcReport.form.researchRecord"}</td>
 		<td class="value"><textarea name="researchRecord[{$formLocale|escape}]" id="researchRecord" rows="5" cols="40" class="textArea richContent">{$researchRecord[$formLocale]|escape}</textarea></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="editorialBoardFunc" key="plugins.generic.sshrcReport.form.editorialBoardFunc"}</td>
+		<td class="label">{fieldLabel name="editorialBoardFunc" key="plugins.reports.sshrcReport.form.editorialBoardFunc"}</td>
 		<td class="value"><textarea name="editorialBoardFunc[{$formLocale|escape}]" id="editorialBoardFunc" rows="5" cols="40" class="textArea richContent">{$editorialBoardFunc[$formLocale]|escape}</textarea></td>
 	</tr>
 </table>
