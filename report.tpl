@@ -41,7 +41,9 @@
 
 {$editorialBoardFunc[$currentLocale]}
 
-<h3>{translate key="plugins.generic.sshrcReport.report.subscriberCountString" numberOfReaders=$numberOfReaders}</h3>
+<h3>{translate key="plugins.generic.sshrcReport.report.subscribers}</h3>
+
+{translate key="plugins.generic.sshrcReport.report.subscriberCountString" numberOfReaders=$numberOfReaders}
 <p>{translate key="plugins.generic.sshrcReport.report.subscriptionBreakdown"}</p>
 <ul>
 	{foreach from=$subscriptionStats item=stat}

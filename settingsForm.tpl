@@ -16,6 +16,8 @@
 
 <div class="separator"></div>
 
+{translate key="plugins.generic.sshrcReport.manager.settings.instructions"}
+
 <form method="post" action="{plugin_url path="settings"}">
 {include file="common/formErrors.tpl"}
 
