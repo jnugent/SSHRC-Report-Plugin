@@ -212,23 +212,24 @@ class SSHRCReportPlugin extends ReportPlugin {
 
 				// add the report file to our issue files list.
 				$realReportFile = dirname($sshrcReportTempFile) . '/SSHRCReport-' . date('Ymd') . '.html';
-				error_log($realReportFile);
 				$fileManager->copyFile($sshrcReportTempFile, $realReportFile);
 
 				// Create a temporary file for the archive.
 				$archiveTmpPath = tempnam(dirname($temporaryFileManager->filesDir), 'sf-');
 
-				// assemble our archive.  First, put the galley files inside.
+				// create our archive and put our report in it, initially
 				exec(Config::getVar('cli', 'tar') . ' -c ' .
-					'-f ' . escapeshellarg($archiveTmpPath) . ' ' .
-					'-C ' . escapeshellarg($filesDir) . ' ' .
-					implode(' ', array_map('escapeshellarg', $issueFiles)));
-
-				// now, add the report.  Different command, since it is in a different directory
-				exec(Config::getVar('cli', 'tar') . ' -r ' .
 						'-f ' . escapeshellarg($archiveTmpPath) . ' ' .
 						'-C ' . escapeshellarg(dirname($realReportFile)) . ' ' .
 						escapeshellarg(str_replace(dirname($realReportFile) . '/', '', $realReportFile)));
+
+				// now, add the galley files.  Different command this time. -r to append to an existing archive.
+				foreach ($issueFiles as $file) {
+					exec(Config::getVar('cli', 'tar') . ' -r ' .
+							'-f ' . escapeshellarg($archiveTmpPath) . ' ' .
+							'-C ' . escapeshellarg(dirname($file)) . ' ' .
+							escapeshellarg(str_replace(dirname($file) . '/', '', $file)));
+					}
 
 				// rename our archive file.
 				$archivePath = dirname($archiveTmpPath) . '/sshrcReport.tar';
