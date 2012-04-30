@@ -74,7 +74,7 @@ class SSHRCReportPlugin extends ReportPlugin {
 	function getManagementVerbs() {
 		$verbs = array();
 		$verbs[] = array('settings', __('plugins.reports.sshrcReport.manager.settings'));
-		$verbs[] = array('reports', __('manager.statistics.reports'));
+		$verbs[] = array('report', __('manager.statistics.reports'));
 
 		return $verbs;
 	}
@@ -94,6 +94,16 @@ class SSHRCReportPlugin extends ReportPlugin {
 			$galley = $templateMgr->get_template_vars('galley');
 		}
 		return false;
+	}
+
+	/**
+	 * This is a convenience redirect from the 'Stats and Reports' menu option.  It just calls
+	 * manage() with the necessary bits for that verb action.
+ 	 * @param $args array
+ 	 * @return boolean
+	 */
+	function display(&$args) {
+		return $this->manage('report', $args, $message);
 	}
 
  	/*
@@ -131,7 +141,7 @@ class SSHRCReportPlugin extends ReportPlugin {
 				}
 				return true;
 
-			case 'reports':
+			case 'report':
 
 				// get the journal settings that are available for this report.
 				// mission or mandate
