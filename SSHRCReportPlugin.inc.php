@@ -170,6 +170,8 @@ class SSHRCReportPlugin extends ReportPlugin {
 
 				$templateMgr->assign('numberOfReaders', isset($registeredUsers['reader']) ? $registeredUsers['reader'] : 0);
 				$templateMgr->assign('subscriptionStats', $subscriptionStats);
+				$templateMgr->assign('institutionalSubscriptionCount', $institutionalSubscriptionDao->getStatusCount($journal->getId()));
+				$templateMgr->assign('individualSubscriptionCount', $individualSubscriptionDao->getStatusCount($journal->getId()));
 
 				// grab the first two issues, and the articles published in it.
 				$issueDao =& DAORegistry::getDAO('IssueDAO');

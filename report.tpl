@@ -43,7 +43,11 @@
 
 <h3>{translate key="plugins.reports.sshrcReport.reports.subscribers}</h3>
 
-{translate key="plugins.reports.sshrcReport.reports.subscriberCountString" numberOfReaders=$numberOfReaders}
+<p>
+{translate key="plugins.reports.sshrcReport.reports.subscriberCountString" numberOfReaders=$numberOfReaders}<br />
+{translate key="plugins.reports.sshrcReport.reports.institutionCountString" institutionalSubscriptionCount=$institutionalSubscriptionCount}<br />
+{translate key="plugins.reports.sshrcReport.reports.individualCountString" individualSubscriptionCount=$individualSubscriptionCount}<br />
+</p>
 <p>{translate key="plugins.reports.sshrcReport.reports.subscriptionBreakdown"}</p>
 <ul>
 	{foreach from=$subscriptionStats item=stat}
