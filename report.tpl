@@ -47,6 +47,8 @@
 {translate key="plugins.reports.sshrcReport.reports.subscriberCountString" numberOfReaders=$numberOfReaders}<br />
 {translate key="plugins.reports.sshrcReport.reports.institutionCountString" institutionalSubscriptionCount=$institutionalSubscriptionCount}<br />
 {translate key="plugins.reports.sshrcReport.reports.individualCountString" individualSubscriptionCount=$individualSubscriptionCount}<br />
+{translate key="plugins.reports.sshrcReport.reports.validInstitutionCountString" validInstitutionalSubscriptionCount=$validInstitutionalSubscriptionCount}<br />
+{translate key="plugins.reports.sshrcReport.reports.validIndividualCountString" validIndividualSubscriptionCount=$validIndividualSubscriptionCount}<br />
 </p>
 <p>{translate key="plugins.reports.sshrcReport.reports.subscriptionBreakdown"}</p>
 <ul>

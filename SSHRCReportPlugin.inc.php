@@ -170,8 +170,37 @@ class SSHRCReportPlugin extends ReportPlugin {
 
 				$templateMgr->assign('numberOfReaders', isset($registeredUsers['reader']) ? $registeredUsers['reader'] : 0);
 				$templateMgr->assign('subscriptionStats', $subscriptionStats);
-				$templateMgr->assign('institutionalSubscriptionCount', $institutionalSubscriptionDao->getStatusCount($journal->getId()));
-				$templateMgr->assign('individualSubscriptionCount', $individualSubscriptionDao->getStatusCount($journal->getId()));
+
+				$institutionalSubscriptions =& $institutionalSubscriptionDao->getSubscriptionsByJournalId($journal->getId());
+
+				$validTotal = 0;
+				$total = 0;
+				while ($subscription =& $institutionalSubscriptions->next()) {
+					$endDate = $subscription->getDateEnd();
+					if (strtotime($endDate) > time()) {
+						$validTotal ++;
+					}
+					$total ++;
+					unset($subscription);
+				}
+
+				$templateMgr->assign('institutionalSubscriptionCount', $total);
+				$templateMgr->assign('validInstitutionalSubscriptionCount', $validTotal);
+
+				$individualSubscriptions =& $individualSubscriptionDao->getSubscriptionsByJournalId($journal->getId());
+
+				$validTotal = 0;
+				$total = 0;
+				while ($subscription =& $individualSubscriptions->next()) {
+					if ($subscription->isValid()) {
+						$validTotal ++;
+					}
+					$total ++;
+					unset($subscription);
+				}
+
+				$templateMgr->assign('individualSubscriptionCount', $total);
+				$templateMgr->assign('validIndividualSubscriptionCount', $validTotal);
 
 				// grab the first two issues, and the articles published in it.
 				$issueDao =& DAORegistry::getDAO('IssueDAO');

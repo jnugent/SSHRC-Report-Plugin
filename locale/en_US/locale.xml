@@ -43,5 +43,7 @@
 	<message key="plugins.reports.sshrcReport.reports.subscriberCountString">{$numberOfReaders} users are currently registered to your journal as readers. ("Readers"  are not necessarily subscribers.)</message>
 	<message key="plugins.reports.sshrcReport.reports.institutionCountString">You currently have {$institutionalSubscriptionCount} institutional subscriptions.</message>
 	<message key="plugins.reports.sshrcReport.reports.individualCountString">You currently have {$individualSubscriptionCount} individual subscriptions.</message>
+	<message key="plugins.reports.sshrcReport.reports.validInstitutionCountString">There are {$validInstitutionalSubscriptionCount} VALID institutional subscriptions.</message>
+	<message key="plugins.reports.sshrcReport.reports.validIndividualCountString">There are {$validIndividualSubscriptionCount} VALID individual subscriptions.</message>
 	<message key="plugins.reports.sshrcReport.reports.subscriptionBreakdown">A breakdown of this journal's subscriptions is shown below.</message>
 </locale>
