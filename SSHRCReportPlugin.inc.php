@@ -159,26 +159,33 @@ class SSHRCReportPlugin extends ReportPlugin {
 				$templateMgr->assign('impact', $journal->getSetting('impact'));
 				$templateMgr->assign('researchRecord', $journal->getSetting('researchRecord'));
 				$templateMgr->assign('editorialBoardFunc', $journal->getSetting('editorialBoardFunc'));
+				$templateMgr->assign('subscriptionInfo', $journal->getSetting('subscriptionInfo'));
 
 				// subscriber information
 				$institutionalSubscriptionDao =& DAORegistry::getDAO('InstitutionalSubscriptionDAO');
 				$individualSubscriptionDao =& DAORegistry::getDAO('IndividualSubscriptionDAO');
 				$journalStatisticsDao =& DAORegistry::getDAO('JournalStatisticsDAO');
 
-				$subscriptionStats = $journalStatisticsDao->getSubscriptionStatistics($journal->getId());
 				$registeredUsers = $journalStatisticsDao->getUserStatistics($journal->getId());
 
 				$templateMgr->assign('numberOfReaders', isset($registeredUsers['reader']) ? $registeredUsers['reader'] : 0);
-				$templateMgr->assign('subscriptionStats', $subscriptionStats);
 
 				$institutionalSubscriptions =& $institutionalSubscriptionDao->getSubscriptionsByJournalId($journal->getId());
 
 				$validTotal = 0;
 				$total = 0;
+				$subscriptionStats = array(); // placeholder.
+
 				while ($subscription =& $institutionalSubscriptions->next()) {
+					$subscriptionName = $subscription->getSubscriptionTypeName();
+					$typeId = $subscription->getTypeId();
+					$this->_initializeSubscriptionArrayCell($subscriptionStats, $typeId, $subscriptionName);
 					$endDate = $subscription->getDateEnd();
 					if (strtotime($endDate) > time()) {
+						$subscriptionStats[$typeId]['valid']++;
 						$validTotal ++;
+					} else {
+						$subscriptionStats[$typeId]['invalid']++;
 					}
 					$total ++;
 					unset($subscription);
@@ -191,9 +198,16 @@ class SSHRCReportPlugin extends ReportPlugin {
 
 				$validTotal = 0;
 				$total = 0;
+
 				while ($subscription =& $individualSubscriptions->next()) {
+					$subscriptionName = $subscription->getSubscriptionTypeName();
+					$typeId = $subscription->getTypeId();
+					$this->_initializeSubscriptionArrayCell($subscriptionStats, $typeId, $subscriptionName);
 					if ($subscription->isValid()) {
+						$subscriptionStats[$typeId]['valid']++;
 						$validTotal ++;
+					} else {
+						$subscriptionStats[$typeId]['invalid']++;
 					}
 					$total ++;
 					unset($subscription);
@@ -201,6 +215,7 @@ class SSHRCReportPlugin extends ReportPlugin {
 
 				$templateMgr->assign('individualSubscriptionCount', $total);
 				$templateMgr->assign('validIndividualSubscriptionCount', $validTotal);
+				$templateMgr->assign('subscriptionStats', $subscriptionStats);
 
 				// grab the first two issues, and the articles published in it.
 				$issueDao =& DAORegistry::getDAO('IssueDAO');
@@ -307,8 +322,25 @@ class SSHRCReportPlugin extends ReportPlugin {
 		$tinyMCEPlugin =& $args[0];
 		$fields =& $args[1];
 
-		$fields = array('impact', 'researchRecord', 'editorialBoardFunc');
+		$fields = array('impact', 'researchRecord', 'editorialBoardFunc', 'subscriptionInfo');
 		return false;
+	}
+
+	/**
+	 * private function to initialize the statistics array for each subscription type.
+	 * @param array $subscriptionStats (reference)
+	 * @param int $subscriptionTypeId
+	 * @param string $subscriptionName
+	 */
+	function _initializeSubscriptionArrayCell(&$subscriptionStats, $subscriptionTypeId, $subscriptionName) {
+		if (!isset($subscriptionStats[$subscriptionTypeId]['valid'])) {
+			$subscriptionStats[$subscriptionTypeId]['valid'] = 0;
+		}
+		if (!isset($subscriptionStats[$subscriptionTypeId]['invalid'])) {
+			$subscriptionStats[$subscriptionTypeId]['invalid'] = 0;
+		}
+
+		$subscriptionStats[$subscriptionTypeId]['name'] = $subscriptionName;
 	}
 }
 ?>

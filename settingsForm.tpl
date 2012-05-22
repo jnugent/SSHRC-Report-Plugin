@@ -34,6 +34,10 @@
 		<td class="label">{fieldLabel name="editorialBoardFunc" key="plugins.reports.sshrcReport.form.editorialBoardFunc"}</td>
 		<td class="value"><textarea name="editorialBoardFunc[{$formLocale|escape}]" id="editorialBoardFunc" rows="5" cols="40" class="textArea richContent">{$editorialBoardFunc[$formLocale]|escape}</textarea></td>
 	</tr>
+	<tr valign="top">
+		<td class="label">{fieldLabel name="subscriptionInfo" key="plugins.reports.sshrcReport.form.subscriptionInfo"}</td>
+		<td class="value"><textarea name="subscriptionInfo[{$formLocale|escape}]" id="subscriptionInfo" rows="5" cols="40" class="textArea richContent">{$subscriptionInfo[$formLocale]|escape}</textarea></td>
+	</tr>
 </table>
 
 <br/>

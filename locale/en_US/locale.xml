@@ -27,7 +27,8 @@
 	<message key="plugins.reports.sshrcReport.form.impact"><![CDATA[<strong>Measures of Impact:</strong><br /> Include any viable measures of impact, including citation index information or available impact factors, that may be pertinent; or provide a self-evaluation the journal's impact]]></message>
 	<message key="plugins.reports.sshrcReport.form.researchRecord"><![CDATA[<strong>Editor-in-chief's Research Record:</strong><br /> Provide a comprehensive description of the editor-in-chief's record of research and scholarly achievement]]></message>
 	<message key="plugins.reports.sshrcReport.form.editorialBoardFunc"><![CDATA[<strong>Editorial Board Description:</strong><br />Please describe the functioning of your editorial board]]></message>
-	
+	<message key="plugins.reports.sshrcReport.form.subscriptionInfo"><![CDATA[<strong>Subscription Information:</strong><br />If you wish to clarify your subscription policies, please do so here]]></message>
+
 	<!-- SSHRC Report output keys -->
 	<message key="plugins.reports.sshrcReport.reports.sshrcReport">SSHRC Report</message>
 	<message key="plugins.reports.sshrcReport.reports.authorGuidelines">Author Guidelines</message>
@@ -41,6 +42,7 @@
 	<message key="plugins.reports.sshrcReport.reports.subscribers">Subscribers</message>
 	<message key="plugins.reports.sshrcReport.reports.subscriberCount">Subscriber Count</message>
 	<message key="plugins.reports.sshrcReport.reports.subscriberCountString">{$numberOfReaders} users are currently registered to your journal as readers. ("Readers"  are not necessarily subscribers.)</message>
+	<message key="plugins.reports.sshrcReport.reports.subscriptionInfo">Subscription Information</message>
 	<message key="plugins.reports.sshrcReport.reports.institutionCountString">You currently have {$institutionalSubscriptionCount} institutional subscriptions.</message>
 	<message key="plugins.reports.sshrcReport.reports.individualCountString">You currently have {$individualSubscriptionCount} individual subscriptions.</message>
 	<message key="plugins.reports.sshrcReport.reports.validInstitutionCountString">There are {$validInstitutionalSubscriptionCount} VALID institutional subscriptions.</message>

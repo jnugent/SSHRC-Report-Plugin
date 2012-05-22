@@ -41,6 +41,10 @@
 
 {$editorialBoardFunc[$currentLocale]}
 
+<h3>{translate key="plugins.reports.sshrcReport.reports.subscriptionInfo"}</h3>
+
+{$subscriptionInfo[$currentLocale]}
+
 <h3>{translate key="plugins.reports.sshrcReport.reports.subscribers}</h3>
 
 <p>
@@ -53,6 +57,6 @@
 <p>{translate key="plugins.reports.sshrcReport.reports.subscriptionBreakdown"}</p>
 <ul>
 	{foreach from=$subscriptionStats item=stat}
-		<li>{$stat.name} => {$stat.count}</li>
+		<li>{$stat.name} => {$stat.valid} Valid, {$stat.invalid} Invalid.</li>
 	{/foreach}
 </ul>

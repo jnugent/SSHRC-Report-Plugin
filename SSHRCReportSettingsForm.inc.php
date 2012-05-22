@@ -49,15 +49,15 @@ class SSHRCReportSettingsForm extends Form {
 			'impact' => $journal->getSetting('impact'),
 			'researchRecord' => $journal->getSetting('researchRecord'),
 			'editorialBoardFunc' => $journal->getSetting('editorialBoardFunc'),
+			'subscriptionInfo' => $journal->getSetting('subscriptionInfo'),
 		);
 	}
-
 
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('impact', 'researchRecord', 'editorialBoardFunc'));
+		$this->readUserVars(array('impact', 'researchRecord', 'editorialBoardFunc', 'subscriptionInfo'));
 	}
 
 	/**
@@ -69,6 +69,7 @@ class SSHRCReportSettingsForm extends Form {
 		$journal->updateSetting('impact', $this->getData('impact'), 'string', true);
 		$journal->updateSetting('researchRecord', $this->getData('researchRecord'), 'string', true);
 		$journal->updateSetting('editorialBoardFunc', $this->getData('editorialBoardFunc'), 'string', true);
+		$journal->updateSetting('subscriptionInfo', $this->getData('subscriptionInfo'), 'string', true);
 
 		parent::execute();
 	}
