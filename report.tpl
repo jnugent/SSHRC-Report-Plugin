@@ -9,25 +9,30 @@
  *}
 <h2>{translate key="plugins.reports.sshrcReport.reports.sshrcReport"}</h2>
 
-<h3>{translate key="plugins.reports.sshrcReport.reports.focusScopeDesc"}</h3>
+{if $includedFields.focusScopeDesc}
+	<h3>{translate key="plugins.reports.sshrcReport.reports.focusScopeDesc"}</h3>
+	{$focusScopeDesc[$currentLocale]}
+{/if}
 
-{$focusScopeDesc[$currentLocale]}
+{if $includedFields.authorGuidelines}
+	<h3>{translate key="plugins.reports.sshrcReport.reports.authorGuidelines"}</h3>
+	{$authorGuidelines[$currentLocale]}
+{/if}
 
-<h3>{translate key="plugins.reports.sshrcReport.reports.authorGuidelines"}</h3>
+{if $includedFields.reviewPolicy}
+	<h3>{translate key="plugins.reports.sshrcReport.reports.reviewPolicy"}</h3>
+	{$reviewPolicy[$currentLocale]}
+{/if}
 
-{$authorGuidelines[$currentLocale]}
+{if $includedFields.reviewGuidelines}
+	<h3>{translate key="plugins.reports.sshrcReport.reports.reviewGuidelines"}</h3>
+	{$reviewGuidelines[$currentLocale]}
+{/if}
 
-<h3>{translate key="plugins.reports.sshrcReport.reports.reviewPolicy"}</h3>
-
-{$reviewPolicy[$currentLocale]}
-
-<h3>{translate key="plugins.reports.sshrcReport.reports.reviewGuidelines"}</h3>
-
-{$reviewGuidelines[$currentLocale]}
-
-<h3>{translate key="plugins.reports.sshrcReport.reports.pubFreqPolicy"}</h3>
-
-{$pubFreqPolicy[$currentLocale]}
+{if $includedFields.pubFreqPolicy}
+	<h3>{translate key="plugins.reports.sshrcReport.reports.pubFreqPolicy"}</h3>
+	{$pubFreqPolicy[$currentLocale]}
+{/if}
 
 <h3>{translate key="plugins.reports.sshrcReport.reports.impact"}</h3>
 
@@ -57,6 +62,6 @@
 <p>{translate key="plugins.reports.sshrcReport.reports.subscriptionBreakdown"}</p>
 <ul>
 	{foreach from=$subscriptionStats item=stat}
-		<li>{$stat.name} => {$stat.valid} Valid, {$stat.invalid} Invalid.</li>
+		<li>{$stat.name} => {$stat.count}</li>
 	{/foreach}
 </ul>

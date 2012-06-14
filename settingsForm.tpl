@@ -19,7 +19,18 @@
 {translate key="plugins.reports.sshrcReport.manager.settings.instructions"}
 
 <form method="post">
+
 {include file="common/formErrors.tpl"}
+
+<table class="data" width="100%">
+	{foreach from=$ojsFields item="setting" key="field"}
+		{assign var="localeKey" value="plugins.reports.sshrcReport.form.include."|concat:$field}
+		<tr>
+			<td class="value"><input type="checkbox" name="{$field}" {if $setting}checked="checked"{/if} /></td>
+			<td class="value">{fieldLabel name=$field key=$localeKey}</td>
+		</tr>
+	{/foreach}
+</table>
 
 <table class="data" width="100%">
 	<tr valign="top">

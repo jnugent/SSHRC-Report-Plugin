@@ -50,6 +50,7 @@ class SSHRCReportSettingsForm extends Form {
 			'researchRecord' => $journal->getSetting('researchRecord'),
 			'editorialBoardFunc' => $journal->getSetting('editorialBoardFunc'),
 			'subscriptionInfo' => $journal->getSetting('subscriptionInfo'),
+			'ojsFields' => $journal->getSetting('sshrcPluginOJSFields'),
 		);
 	}
 
@@ -57,7 +58,7 @@ class SSHRCReportSettingsForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('impact', 'researchRecord', 'editorialBoardFunc', 'subscriptionInfo'));
+		$this->readUserVars(array('impact', 'researchRecord', 'editorialBoardFunc', 'subscriptionInfo', 'focusScopeDesc', 'authorGuidelines', 'reviewPolicy', 'reviewGuidelines', 'pubFreqPolicy'));
 	}
 
 	/**
@@ -70,6 +71,15 @@ class SSHRCReportSettingsForm extends Form {
 		$journal->updateSetting('researchRecord', $this->getData('researchRecord'), 'string', true);
 		$journal->updateSetting('editorialBoardFunc', $this->getData('editorialBoardFunc'), 'string', true);
 		$journal->updateSetting('subscriptionInfo', $this->getData('subscriptionInfo'), 'string', true);
+
+		$fields = array('focusScopeDesc', 'authorGuidelines', 'reviewPolicy', 'reviewGuidelines', 'pubFreqPolicy');
+
+		$sshrcPluginOJSFields = array();
+		foreach ($fields as $field) {
+			$sshrcPluginOJSFields[$field] = (boolean) $this->getData($field);
+		}
+
+		$journal->updateSetting('sshrcPluginOJSFields', $sshrcPluginOJSFields, 'object', false);
 
 		parent::execute();
 	}

@@ -29,6 +29,13 @@
 	<message key="plugins.reports.sshrcReport.form.editorialBoardFunc"><![CDATA[<strong>Editorial Board Description:</strong><br />Please describe the functioning of your editorial board]]></message>
 	<message key="plugins.reports.sshrcReport.form.subscriptionInfo"><![CDATA[<strong>Subscription Information:</strong><br />If you wish to clarify your subscription policies, please do so here]]></message>
 
+	<!-- Setting form keys representing included content from OJS -->
+	<message key="plugins.reports.sshrcReport.form.include.focusScopeDesc">Include content from this journal's focus and scope description.</message>
+	<message key="plugins.reports.sshrcReport.form.include.authorGuidelines">Include content from this journal's author guidelines.</message>
+	<message key="plugins.reports.sshrcReport.form.include.reviewPolicy">Include content from this journal's peer review policy.</message>
+	<message key="plugins.reports.sshrcReport.form.include.reviewGuidelines">Include content from this journal's review guidelines.</message>
+	<message key="plugins.reports.sshrcReport.form.include.pubFreqPolicy">Include content from this journal's publication frequency policy.</message>
+
 	<!-- SSHRC Report output keys -->
 	<message key="plugins.reports.sshrcReport.reports.sshrcReport">SSHRC Report</message>
 	<message key="plugins.reports.sshrcReport.reports.authorGuidelines">Author Guidelines</message>

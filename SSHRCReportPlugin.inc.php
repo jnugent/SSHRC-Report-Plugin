@@ -161,6 +161,9 @@ class SSHRCReportPlugin extends ReportPlugin {
 				$templateMgr->assign('editorialBoardFunc', $journal->getSetting('editorialBoardFunc'));
 				$templateMgr->assign('subscriptionInfo', $journal->getSetting('subscriptionInfo'));
 
+				// include the toggles indicating which OJS fields to include in the report.
+				$templateMgr->assign('includedFields', $journal->getSetting('sshrcPluginOJSFields'));
+
 				// subscriber information
 				$institutionalSubscriptionDao =& DAORegistry::getDAO('InstitutionalSubscriptionDAO');
 				$individualSubscriptionDao =& DAORegistry::getDAO('IndividualSubscriptionDAO');
