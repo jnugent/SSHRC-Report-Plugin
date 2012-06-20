@@ -12,25 +12,36 @@
 {include file="common/header.tpl"}
 {/strip}
 <div id="sshrcReportSettings">
-<div id="description">{translate key="plugins.reports.sshrcReport.manager.settings.description"}</div>
+{url|assign:"reportUrl" op="statistics"}
+{url|assign:"analyticsUrl" op="plugins" path="generic"}
+<div id="description">{translate key="plugins.reports.sshrcReport.manager.settings.description" reportUrl=$reportUrl analyticsUrl=$analyticsUrl}</div>
 
 <div class="separator"></div>
 
-{translate key="plugins.reports.sshrcReport.manager.settings.instructions"}
+<h2>{translate key="plugins.reports.sshrcReport.manager.settings.existingInformation"}</h2>
+
+<p>{translate key="plugins.reports.sshrcReport.manager.settings.existingInformationInstructions"}</p>
 
 <form method="post">
 
 {include file="common/formErrors.tpl"}
 
 <table class="data" width="100%">
+	{url|assign:"url" op="setup"}
 	{foreach from=$ojsFields item="setting" key="field"}
 		{assign var="localeKey" value="plugins.reports.sshrcReport.form.include."|concat:$field}
 		<tr>
 			<td class="value"><input type="checkbox" name="{$field}" {if $setting}checked="checked"{/if} /></td>
-			<td class="value">{fieldLabel name=$field key=$localeKey}</td>
+			<td class="value">{fieldLabel name=$field key=$localeKey url=$url}</td>
 		</tr>
 	{/foreach}
 </table>
+
+<div class="separator"></div>
+
+<h2>{translate key="plugins.reports.sshrcReport.manager.settings.additionalInformation"}</h2>
+
+<p>{translate key="plugins.reports.sshrcReport.manager.settings.additionalInformationInstructions"}</p>
 
 <table class="data" width="100%">
 	<tr valign="top">

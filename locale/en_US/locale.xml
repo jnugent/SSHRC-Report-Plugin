@@ -19,22 +19,28 @@
 	<!-- Settings Management -->
 	<message key="plugins.reports.sshrcReport.manager.settings">Settings</message>
 	<message key="plugins.reports.sshrcReport.manager.sshrcReportSettings">SSHRC Report Settings</message>
-	<message key="plugins.reports.sshrcReport.manager.settings.description"><![CDATA[<p>With this plugin enabled, journal managers may generate reports for the Social Science and Humanities (SSHRC) <a href="http://www.sshrc-crsh.gc.ca/funding-financement/programs-programmes/scholarly_journals-revues_savantes-eng.aspx">Aid to Scholarly Journals</a> program. This report does not generate a complete, ready-to-go application for SSHRC, but will automatically retrieve and bundle information already included in OJS, along with the information provided below, into one single report that can subsequently be used to assist in writing the SSHRC application. For more information on eligibility and other guidelines, see the SSHRC website.</p>]]></message>
+	<message key="plugins.reports.sshrcReport.manager.settings.description"><![CDATA[<p>With this plugin enabled, journal managers may generate reports for the Social Science and Humanities (SSHRC) <a href="http://www.sshrc-crsh.gc.ca/funding-financement/programs-programmes/scholarly_journals-revues_savantes-eng.aspx">Aid to Scholarly Journals</a> program. This report does not generate a complete, ready-to-go application for SSHRC, but will automatically retrieve and bundle information already included in OJS, along with the information provided below, into one single <a href="{$reportUrl}">report</a> that can subsequently be used to assist in writing the SSHRC application. For more information on eligibility and other guidelines, see the SSHRC website.</p>
+	<p>Once you configure the plugin, you can retrieve the report from the <a href="{$reportUrl}">Stats and Reports</a> page, from your Journal Management pages.</p>
 	
-	<message key="plugins.reports.sshrcReport.manager.settings.instructions"><![CDATA[<p>While many usage elements that SSHRC requests are available directly from the OJS system itself, SSHRC also requests the following non-usage-based information. Please fill these out to the best of your ability. You may have to revisit these items from year to year.</p>]]></message>
+	<p><strong>Note:</strong> While this plugin aims to provide as much relevant information from OJS as possible for your SSHRC reporting needs, this information should only be used as a starting point for your application. The information provided by this plugin should be referenced against and supplemented by all other sources of information available to the journal, including external subscriber databases; <a href="http://google.com/analytics">Google Analytics</a> or <a href="http://piwik.org/">Piwik Analytics</a> (provided you have the relevant <a href="{$analyticsUrl}">generic plugins</a> enabled); and other indexing and impact sources.</p>]]></message>
+
+	<message key="plugins.reports.sshrcReport.manager.settings.existingInformation">Existing Information</message>
+	<message key="plugins.reports.sshrcReport.manager.settings.existingInformationInstructions">OJS already includes a substantial amount of information that maybe be of use in your SSHRC application. Select the items below that are relevant to your application, and ensure that you have fully configured each option by following the links below.</message>
+	<message key="plugins.reports.sshrcReport.manager.settings.additionalInformation">Additional Information</message>
+	<message key="plugins.reports.sshrcReport.manager.settings.additionalInformationInstructions"><![CDATA[<p>While many elements that SSHRC requests are available directly from the OJS system itself, SSHRC also requests the following information that is not typically stored within OJS. Please fill these out to the best of your ability. You may have to revisit these items from year to year.</p>]]></message>
 
 	<!-- Settings form keys  -->
-	<message key="plugins.reports.sshrcReport.form.impact"><![CDATA[<strong>Measures of Impact:</strong><br /> Include any viable measures of impact, including citation index information or available impact factors, that may be pertinent; or provide a self-evaluation the journal's impact]]></message>
+	<message key="plugins.reports.sshrcReport.form.impact"><![CDATA[<strong>Measures of Impact:</strong><br /> Include any viable measures of impact, including citation index information or available impact factors, that may be pertinent; or provide a self-evaluation of the journal's impact]]></message>
 	<message key="plugins.reports.sshrcReport.form.researchRecord"><![CDATA[<strong>Editor-in-chief's Research Record:</strong><br /> Provide a comprehensive description of the editor-in-chief's record of research and scholarly achievement]]></message>
 	<message key="plugins.reports.sshrcReport.form.editorialBoardFunc"><![CDATA[<strong>Editorial Board Description:</strong><br />Please describe the functioning of your editorial board]]></message>
-	<message key="plugins.reports.sshrcReport.form.subscriptionInfo"><![CDATA[<strong>Subscription Information:</strong><br />If you wish to clarify your subscription policies, please do so here]]></message>
+	<message key="plugins.reports.sshrcReport.form.subscriptionInfo"><![CDATA[<strong>Subscription Information:</strong><br />This report provides the information available under <a href="{subscriptionsUrl}">Subscriptions</a>. If you wish to clarify your subscription policies, or add any further information to be considered, please do so here]]></message>
 
 	<!-- Setting form keys representing included content from OJS -->
-	<message key="plugins.reports.sshrcReport.form.include.focusScopeDesc">Include content from this journal's focus and scope description.</message>
-	<message key="plugins.reports.sshrcReport.form.include.authorGuidelines">Include content from this journal's author guidelines.</message>
-	<message key="plugins.reports.sshrcReport.form.include.reviewPolicy">Include content from this journal's peer review policy.</message>
-	<message key="plugins.reports.sshrcReport.form.include.reviewGuidelines">Include content from this journal's review guidelines.</message>
-	<message key="plugins.reports.sshrcReport.form.include.pubFreqPolicy">Include content from this journal's publication frequency policy.</message>
+	<message key="plugins.reports.sshrcReport.form.include.focusScopeDesc"><![CDATA[Include content from the journal <a href="{$url}/2#focusAndScopeDescription" target="blank">Focus and Scope</a>.]]></message>
+	<message key="plugins.reports.sshrcReport.form.include.authorGuidelines"><![CDATA[Include content from the journal <a href="{$url}/3#authorGuidelinesInfo" target="blank">Author Guidelines</a>.]]></message>
+	<message key="plugins.reports.sshrcReport.form.include.reviewPolicy"><![CDATA[Include content from the journal <a href="{$url}/2#peerReviewPolicy" target="blank">Peer Review Policy</a>.]]></message>
+	<message key="plugins.reports.sshrcReport.form.include.reviewGuidelines"><![CDATA[Include content from the journal <a href="{$url}/2#reviewGuidelinesInfo" target="blank">Review Guidelines</a>.]]></message>
+	<message key="plugins.reports.sshrcReport.form.include.pubFreqPolicy"><![CDATA[Include content from the journal <a href="{$url}/4#publicationScheduling" target="blank">Publication Schedule</a>.]]></message>
 
 	<!-- SSHRC Report output keys -->
 	<message key="plugins.reports.sshrcReport.reports.sshrcReport">SSHRC Report</message>
@@ -54,5 +60,5 @@
 	<message key="plugins.reports.sshrcReport.reports.individualCountString">You currently have {$individualSubscriptionCount} individual subscriptions.</message>
 	<message key="plugins.reports.sshrcReport.reports.validInstitutionCountString">There are {$validInstitutionalSubscriptionCount} VALID institutional subscriptions.</message>
 	<message key="plugins.reports.sshrcReport.reports.validIndividualCountString">There are {$validIndividualSubscriptionCount} VALID individual subscriptions.</message>
-	<message key="plugins.reports.sshrcReport.reports.subscriptionBreakdown">A breakdown of this journal's subscriptions is shown below.</message>
+	<message key="plugins.reports.sshrcReport.reports.subscriptionBreakdown">A breakdown of the journal subscriptions is shown below.</message>
 </locale>

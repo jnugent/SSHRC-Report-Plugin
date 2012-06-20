@@ -34,21 +34,29 @@
 	{$pubFreqPolicy[$currentLocale]}
 {/if}
 
+{if $impact}
 <h3>{translate key="plugins.reports.sshrcReport.reports.impact"}</h3>
 
 {$impact[$currentLocale]}
+{/if}
 
+{if $researchRecord}
 <h3>{translate key="plugins.reports.sshrcReport.reports.researchRecord"}</h3>
 
 {$researchRecord[$currentLocale]}
+{/if}
 
+{if $editorialBoardFunc}
 <h3>{translate key="plugins.reports.sshrcReport.reports.editorialBoardFunc"}</h3>
 
 {$editorialBoardFunc[$currentLocale]}
+{/if}
 
+{if $subscriptionInfo}
 <h3>{translate key="plugins.reports.sshrcReport.reports.subscriptionInfo"}</h3>
 
 {$subscriptionInfo[$currentLocale]}
+{/if}
 
 <h3>{translate key="plugins.reports.sshrcReport.reports.subscribers}</h3>
 
