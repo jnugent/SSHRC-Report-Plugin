@@ -70,6 +70,6 @@
 <p>{translate key="plugins.reports.sshrcReport.reports.subscriptionBreakdown"}</p>
 <ul>
 	{foreach from=$subscriptionStats item=stat}
-		<li>{$stat.name} => {$stat.count}</li>
+		<li>{$stat.name} => {$stat.valid} valid, {$stat.invalid} invalid</li>
 	{/foreach}
 </ul>
