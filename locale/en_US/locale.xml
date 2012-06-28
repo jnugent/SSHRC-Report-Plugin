@@ -54,11 +54,15 @@
 	<message key="plugins.reports.sshrcReport.reports.editorialBoardFunc">Functioning of the Editorial Board</message>
 	<message key="plugins.reports.sshrcReport.reports.subscribers">Subscribers</message>
 	<message key="plugins.reports.sshrcReport.reports.subscriberCount">Subscriber Count</message>
-	<message key="plugins.reports.sshrcReport.reports.subscriberCountString">{$numberOfReaders} users are currently registered to your journal as readers. ("Readers"  are not necessarily subscribers.)</message>
+	<message key="plugins.reports.sshrcReport.reports.subscriberCountString">{$numberOfReaders} users are currently registered to your journal as readers. "Readers" does not include "unregistered" readers nor are "readers" necessarily subscribers.</message>
 	<message key="plugins.reports.sshrcReport.reports.subscriptionInfo">Subscription Information</message>
-	<message key="plugins.reports.sshrcReport.reports.institutionCountString">You currently have {$institutionalSubscriptionCount} institutional subscriptions.</message>
-	<message key="plugins.reports.sshrcReport.reports.individualCountString">You currently have {$individualSubscriptionCount} individual subscriptions.</message>
-	<message key="plugins.reports.sshrcReport.reports.validInstitutionCountString">There are {$validInstitutionalSubscriptionCount} VALID institutional subscriptions.</message>
-	<message key="plugins.reports.sshrcReport.reports.validIndividualCountString">There are {$validIndividualSubscriptionCount} VALID individual subscriptions.</message>
+	<message key="plugins.reports.sshrcReport.reports.institutionCountString">You have recorded in OJS {$institutionalSubscriptionCount} current institutional subscriptions.</message>
+	<message key="plugins.reports.sshrcReport.reports.individualCountString">You have recorded in OJS {$individualSubscriptionCount} current individual subscriptions.</message>
+	<message key="plugins.reports.sshrcReport.reports.validInstitutionCountString">There are {$validInstitutionalSubscriptionCount} ACTIVE institutional subscriptions.</message>
+	<message key="plugins.reports.sshrcReport.reports.validIndividualCountString">There are {$validIndividualSubscriptionCount} ACTIVE individual subscriptions.</message>
 	<message key="plugins.reports.sshrcReport.reports.subscriptionBreakdown">A breakdown of the journal subscriptions is shown below.</message>
+	<message key="plugins.reports.sshrcReport.reports.subscriptionName">Subscription Name</message>
+	<message key="plugins.reports.sshrcReport.reports.active">ACTIVE</message>
+	<message key="plugins.reports.sshrcReport.reports.pending">PENDING</message>
+	<message key="plugins.reports.sshrcReport.reports.averagePending">AVG. days pending</message>
 </locale>

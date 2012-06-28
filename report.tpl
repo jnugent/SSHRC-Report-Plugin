@@ -68,8 +68,17 @@
 {translate key="plugins.reports.sshrcReport.reports.validIndividualCountString" validIndividualSubscriptionCount=$validIndividualSubscriptionCount}<br />
 </p>
 <p>{translate key="plugins.reports.sshrcReport.reports.subscriptionBreakdown"}</p>
-<ul>
+<table cellpadding="5">
+	<tr>
+		<th>{translate key="plugins.reports.sshrcReport.reports.subscriptionName"}</th>
+		<th>{translate key="plugins.reports.sshrcReport.reports.active"}</th>
+		<th>{translate key="plugins.reports.sshrcReport.reports.pending"}</th>
+		<th>{translate key="plugins.reports.sshrcReport.reports.averagePending"}</th>
+	</tr>
 	{foreach from=$subscriptionStats item=stat}
-		<li>{$stat.name} => {$stat.valid} valid, {$stat.invalid} invalid</li>
-	{/foreach}
-</ul>
+		<tr>
+			<td>{$stat.name}</td><td style="text-align: center;">{$stat.valid}</td>
+			<td style="text-align: center;">{$stat.invalid}</td><td style="text-align: center;">{if $stat.invalid > 0}{math equation="x/y" x=$stat.daysPastDue|@array_sum y=$stat.daysPastDue|@count format="%.1f"}{/if}</td>
+		</tr>
+		{/foreach}
+</table>

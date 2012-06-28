@@ -178,17 +178,18 @@ class SSHRCReportPlugin extends ReportPlugin {
 				$validTotal = 0;
 				$total = 0;
 				$subscriptionStats = array(); // placeholder.
-
+				$currTime = time();
 				while ($subscription =& $institutionalSubscriptions->next()) {
 					$subscriptionName = $subscription->getSubscriptionTypeName();
 					$typeId = $subscription->getTypeId();
 					$this->_initializeSubscriptionArrayCell($subscriptionStats, $typeId, $subscriptionName);
 					$endDate = $subscription->getDateEnd();
-					if (strtotime($endDate) > time()) {
+					if (strtotime($endDate) > $currTime) {
 						$subscriptionStats[$typeId]['valid']++;
 						$validTotal ++;
 					} else {
 						$subscriptionStats[$typeId]['invalid']++;
+						$subscriptionStats[$typeId]['daysPastDue'][] = ($currTime - strtotime($endDate))/86400; // days
 					}
 					$total ++;
 					unset($subscription);
@@ -210,7 +211,9 @@ class SSHRCReportPlugin extends ReportPlugin {
 						$subscriptionStats[$typeId]['valid']++;
 						$validTotal ++;
 					} else {
+						$endDate = $subscription->getDateEnd();
 						$subscriptionStats[$typeId]['invalid']++;
+						$subscriptionStats[$typeId]['daysPastDue'][] = ($currTime - strtotime($endDate))/86400; // days
 					}
 					$total ++;
 					unset($subscription);
@@ -341,6 +344,7 @@ class SSHRCReportPlugin extends ReportPlugin {
 		}
 		if (!isset($subscriptionStats[$subscriptionTypeId]['invalid'])) {
 			$subscriptionStats[$subscriptionTypeId]['invalid'] = 0;
+			$subscriptionStats[$subscriptionTypeId]['daysPastDue'] = array();
 		}
 
 		$subscriptionStats[$subscriptionTypeId]['name'] = $subscriptionName;
