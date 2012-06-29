@@ -197,6 +197,7 @@ class SSHRCReportPlugin extends ReportPlugin {
 
 				$templateMgr->assign('institutionalSubscriptionCount', $total);
 				$templateMgr->assign('validInstitutionalSubscriptionCount', $validTotal);
+				$templateMgr->assign('pendingInstitutionalSubscriptionCount', $total - $validTotal);
 
 				$individualSubscriptions =& $individualSubscriptionDao->getSubscriptionsByJournalId($journal->getId());
 

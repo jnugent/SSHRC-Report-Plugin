@@ -9,6 +9,8 @@
  *}
 <h2>{translate key="plugins.reports.sshrcReport.reports.sshrcReport"}</h2>
 
+<p>{translate key="plugins.reports.sshrcReport.reports.sshrcReportDescription"}</p>
+
 {if $includedFields.focusScopeDesc}
 	<h3>{translate key="plugins.reports.sshrcReport.reports.focusScopeDesc"}</h3>
 	{$focusScopeDesc[$currentLocale]}
@@ -64,8 +66,18 @@
 {translate key="plugins.reports.sshrcReport.reports.subscriberCountString" numberOfReaders=$numberOfReaders}<br />
 {translate key="plugins.reports.sshrcReport.reports.institutionCountString" institutionalSubscriptionCount=$institutionalSubscriptionCount}<br />
 {translate key="plugins.reports.sshrcReport.reports.individualCountString" individualSubscriptionCount=$individualSubscriptionCount}<br />
-{translate key="plugins.reports.sshrcReport.reports.validInstitutionCountString" validInstitutionalSubscriptionCount=$validInstitutionalSubscriptionCount}<br />
-{translate key="plugins.reports.sshrcReport.reports.validIndividualCountString" validIndividualSubscriptionCount=$validIndividualSubscriptionCount}<br />
+{if $validInstitutionalSubscriptionCount}
+	{translate key="plugins.reports.sshrcReport.reports.validInstitutionCountString" validInstitutionalSubscriptionCount=$validInstitutionalSubscriptionCount}<br />
+{/if}
+{if $validIndividualSubscriptionCount}
+	{translate key="plugins.reports.sshrcReport.reports.validIndividualCountString" validIndividualSubscriptionCount=$validIndividualSubscriptionCount}<br />
+{/if}
+{if $pendingInstitutionalSubscriptionCount}
+	{translate key="plugins.reports.sshrcReport.reports.pendingInstitutionCountString" pendingInstitutionalSubscriptionCount=$pendingInstitutionalSubscriptionCount}<br />
+{/if}
+{if $pendingIndividualSubscriptionCount}
+	{translate key="plugins.reports.sshrcReport.reports.pendingIndividualCountString" pendingIndividualSubscriptionCount=$pendingIndividualSubscriptionCount}<br />
+{/if}
 </p>
 <p>{translate key="plugins.reports.sshrcReport.reports.subscriptionBreakdown"}</p>
 <table cellpadding="5">
