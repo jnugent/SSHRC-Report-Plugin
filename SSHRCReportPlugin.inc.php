@@ -222,6 +222,8 @@ class SSHRCReportPlugin extends ReportPlugin {
 
 				$templateMgr->assign('individualSubscriptionCount', $total);
 				$templateMgr->assign('validIndividualSubscriptionCount', $validTotal);
+				$templateMgr->assign('pendingIndividualSubscriptionCount', $total - $validTotal);
+
 				$templateMgr->assign('subscriptionStats', $subscriptionStats);
 
 				// grab the first two issues, and the articles published in it.
