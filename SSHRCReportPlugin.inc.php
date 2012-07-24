@@ -297,7 +297,7 @@ class SSHRCReportPlugin extends ReportPlugin {
 					}
 
 				// rename our archive file.
-				$archivePath = dirname($archiveTmpPath) . '/sshrcReport.tar';
+				$archivePath = dirname($archiveTmpPath) . '/sshrcReport-' . $journal->getPath() . '.tar';
 				$fileManager->copyFile($archiveTmpPath, $archivePath);
 
 				if (file_exists($archivePath)) {
